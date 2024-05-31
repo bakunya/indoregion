@@ -1,8 +1,5 @@
 import { Hono } from 'hono'
-import * as Papa from 'papaparse'
-import { serveStatic } from 'hono/serve-static'
-import { html } from 'hono/html'
-import { parseBody } from 'hono/utils/body'
+import { cors } from 'hono/cors'
 
 type Bindings = {
 	DB: D1Database
@@ -164,6 +161,8 @@ function Docs() {
 		</html>
 	)
 }
+
+app.use('*', cors())
 
 app.get('/', (c) => {
 	return c.html(<Docs />, 200)
