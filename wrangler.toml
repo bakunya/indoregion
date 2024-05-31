@@ -1,0 +1,7 @@
+name = "indoregion"
+compatibility_date = "2023-12-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "indoregion"
+database_id = "095d55cc-ea81-45b0-8518-b6c489aeb45d"

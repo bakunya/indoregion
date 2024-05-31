@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "dev": "wrangler dev src/index.tsx",
+    "deploy": "wrangler deploy --minify src/index.tsx",
+	"db:prod": "npx wrangler@latest d1 execute DB --remote --file=./src/schema.sql",
+	"db:local": "npx wrangler@latest d1 execute DB --local --file=./src/schema.sql"
+  },
+  "dependencies": {
+    "hono": "^4.4.0",
+    "papaparse": "^5.4.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240403.0",
+    "@types/papaparse": "^5.3.14",
+    "wrangler": "^3.47.0"
+  }
+}
