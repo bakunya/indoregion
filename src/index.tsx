@@ -243,4 +243,24 @@ app.get('/villages/:idn_district_id', async c => {
 	return c.json({ data: data.results })
 })
 
+app.get("/search/districts", async c => {
+	const queryString = c.req.query("q")
+	
+	const data = await c.env.DB.prepare(`
+		SELECT
+			villages.name as village,
+			districts.name as district,
+			regencies.name as regency,
+			provinces.name as province
+		FROM districts 
+		JOIN villages ON districts.id = villages.idn_district_id
+		JOIN regencies ON districts.idn_regency_id = regencies.id 
+		JOIN provinces ON regencies.idn_province_id = provinces.id 
+		WHERE districts.name LIKE ? OR villages.name LIKE ?
+		LIMIT 20
+	`).bind(`%${queryString}%`, `%${queryString}%`).all()
+
+	return c.json({ data: data.results })
+})
+
 export default app
