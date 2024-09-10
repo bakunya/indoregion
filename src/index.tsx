@@ -156,6 +156,14 @@ function Docs() {
 						<p><strong>GET</strong> <code>/villages/:idn_district_id</code></p>
 						<p>Retrieves a list of all villages in a specified district.</p>
 					</section>
+					<section class="card">
+						<div class="title">
+							<h3>Search by villages or districts</h3>
+							<a target="_blank" href="/search?q=tanjung">Try</a>
+						</div>
+						<p><strong>GET</strong> <code>/search?q=parameters</code></p>
+						<p>Retrieves a list of search result.</p>
+					</section>
 				</div>
 			</body>
 		</html>
@@ -243,7 +251,7 @@ app.get('/villages/:idn_district_id', async c => {
 	return c.json({ data: data.results })
 })
 
-app.get("/search/districts", async c => {
+app.get("/search", async c => {
 	const queryString = c.req.query("q")
 	
 	const data = await c.env.DB.prepare(`
